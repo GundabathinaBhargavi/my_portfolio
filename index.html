@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bhargavi Venu | Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --accent: #a259ff;
+      --bg: #15002b;
+      --card: #1c0a3d;
+      --text: #fff;
+      --muted: #b8b8b8;
+      --glow: 0 0 32px #a259ff55, 0 0 8px #a259ff88;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #15002b 0%, #2a1466 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: var(--text);
+      font-family: 'Montserrat', Arial, sans-serif;
+      min-height: 100vh;
+      width: 100vw;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      width: 100vw;
+    }
+    /* NAVBAR */
+    .navbar {
+      width: 100vw;
+      background: #1a0938e8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 18px #0002;
+      backdrop-filter: blur(6px);
+    }
+    .navbar-inner {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 70px;
+      position: relative;
+    }
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-shadow: var(--glow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo i {
+      font-size: 1.4em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+      transition: all 0.3s;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1em;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+      position: relative;
+      padding: 6px 0;
+    }
+    .nav-links a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width .3s;
+      margin-top: 4px;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent);
+    }
+    .nav-links a:hover::after, .nav-links a.active::after {
+      width: 100%;
+    }
+    /* Hamburger for mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+    .hamburger span {
+      width: 26px;
+      height: 3px;
+      background: var(--accent);
+      margin: 3px 0;
+      border-radius: 2px;
+      transition: 0.4s;
+    }
+    .nav-open .nav-links {
+      display: flex !important;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background: #1a0938e8;
+      width: 200px;
+      gap: 0;
+      box-shadow: 0 8px 24px #0008;
+      border-radius: 0 0 0 16px;
+      padding: 12px 0;
+      animation: fadeInMenu 0.3s;
+    }
+    @keyframes fadeInMenu {
+      from { opacity: 0; right: -50px;}
+      to { opacity: 1; right: 0;}
+    }
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+    /* PROFILE SECTION */
+    .profile-section {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 32px;
+      margin-bottom: 40px;
+      padding: 0 8px;
+    }
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      margin-bottom: 24px;
+      box-shadow: var(--glow);
+      border: 4px solid var(--accent);
+      background: #222;
+    }
+    .profile-name {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 10px;
+      text-align: center;
+      text-shadow: var(--glow);
+    }
+    .profile-title {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .profile-contact {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 14px;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+    }
+    .profile-contact a {
+      color: inherit;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .profile-contact a .fa-whatsapp {
+      color: #25D366;
+      font-size: 1.1em;
+      vertical-align: middle;
+    }
+    .socials {
+      margin: 16px 0 0 0;
+      text-align: center;
+    }
+    .socials a {
+      color: var(--accent);
+      margin: 0 10px;
+      font-size: 1.5em;
+      transition: color 0.2s, transform 0.2s;
+      vertical-align: middle;
+    }
+    .socials a:hover { color: #fff; transform: scale(1.15);}
+    /* MAIN CONTENT */
+    .main-content {
+      width: 100vw;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 12px 40px 12px;
+    }
+    /* SECTION CARDS */
+    .section-card {
+      width: 100%;
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #0004, 0 0 24px #a259ff22;
+      padding: 36px 32px 32px 32px;
+      margin-bottom: 38px;
+      opacity: 0;
+      transform: translateX(-80px) scale(0.97);
+      transition: opacity 0.7s cubic-bezier(.47,1.64,.41,.8), transform 0.7s cubic-bezier(.47,1.64,.41,.8);
+    }
+    .section-card.visible {
+      opacity: 1;
+      transform: none;
+    }
+    /* SECTION TITLES - horizontal nav style */
+    .section-title-bar {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 36px;
+      margin-right: 10px;
+      flex-wrap: wrap;
+    }
+    .section-title-link {
+      color: var(--accent);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-shadow: var(--glow);
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    .section-title-link:hover, .section-title-link.active {
+      background: #2a1466;
+      color: #fff;
+    }
+    /* Section Content */
+    .section-content {
+      font-size: 1.1rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+    .skills-list, .cert-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 32px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .skills-list li, .cert-list li {
+      background: #2a1466;
+      color: var(--accent);
+      padding: 8px 18px;
+      border-radius: 14px;
+      font-weight: 500;
+      font-size: 1em;
+      box-shadow: 0 0 8px #a259ff33;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    /* Education */
+    .edu-item {
+      margin-bottom: 22px;
+    }
+    .edu-title {
+      font-weight: 600;
+      color: #fff;
+      font-size: 1.15em;
+    }
+    .edu-years {
+      color: var(--muted);
+      font-size: 0.95em;
+      margin-left: 8px;
+    }
+    .edu-desc {
+      color: var(--muted);
+      font-size: 1em;
+      margin-left: 2px;
+    }
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .project-card {
+      background: #24104f;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px #a259ff22;
+      padding: 24px 18px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      min-height: 210px;
+    }
+    .project-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 6px 40px #a259ff44;
+    }
+    .project-icon {
+      font-size: 2.2em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .project-title {
+      font-weight: bold;
+      color: #fff;
+      font-size: 1.2em;
+      margin-bottom: 4px;
+    }
+    .project-desc {
+      color: var(--muted);
+      font-size: 1em;
+      margin-bottom: 4px;
+    }
+    .project-tech {
+      color: var(--accent);
+      font-size: 0.98em;
+      margin-bottom: 0;
+    }
+    /* PCOS Demo */
+    .pcos-demo {
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .pcos-img-block {
+      background: #2a1466;
+      border-radius: 12px;
+      box-shadow: 0 0 18px #a259ff22;
+      padding: 12px 12px 8px 12px;
+      text-align: center;
+      min-width: 180px;
+    }
+    .pcos-img-block img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      box-shadow: 0 0 12px #a259ff44;
+      background: #222;
+    }
+    .pcos-caption {
+      color: var(--accent);
+      font-size: 1em;
+      font-weight: 500;
+    }
+    /* Back to Top Button */
+    #backToTop {
+      display:none;
+      position:fixed;
+      bottom:32px;
+      right:32px;
+      background:var(--accent);
+      color:#fff;
+      padding:10px 14px;
+      border-radius:50%;
+      box-shadow:0 2px 8px #0008;
+      font-size:1.5em;
+      z-index:999;
+      text-align:center;
+      cursor:pointer;
+      transition: background 0.2s;
+    }
+    #backToTop:hover {
+      background: #fff;
+      color: var(--accent);
+    }
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .main-content { max-width: 100vw;}
+      .section-card { padding: 24px 10px 18px 10px;}
+      .projects-grid { grid-template-columns: 1fr; gap: 18px;}
+    }
+    @media (max-width: 900px) {
+      .main-content { padding: 0 2vw 40px 2vw;}
+      .section-title-bar { gap: 18px; }
+    }
+    @media (max-width: 700px) {
+      .profile-section { margin-top: 18px;}
+      .logo { font-size: 1.4rem; }
+      .section-title-bar { gap: 8px; margin-bottom: 12px;}
+      .section-card { padding: 12px 2px 10px 2px;}
+      .pcos-demo { flex-direction: column; gap: 18px;}
+      .pcos-img-block img { width: 98vw; max-width: 220px; height: auto;}
+    }
+    @media (max-width: 400px) {
+      .section-title-bar { font-size: 1.1rem;}
+      .profile-name { font-size: 1.2rem;}
+      .profile-pic { width: 70px; height: 70px;}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="navbar-inner">
+      <span class="logo"><i class="fas fa-user-astronaut"></i> BHARGAVI</span>
+      <div class="nav-links">
+        <a href="#summary" class="nav-link">Summary</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#certifications" class="nav-link">Certifications</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+  <!-- PROFILE SECTION -->
+  <section class="profile-section">
+    <img src="portfoliopic.jpeg" alt="Profile Photo" class="profile-pic" />
+    <div class="profile-name">Bhargavi</div>
+    <div class="profile-title">B.Tech CSE | AI/ML Enthusiast</div>
+    <div class="profile-contact">
+      <i class="fas fa-envelope"></i> bhargavivenu26@gmail.com &nbsp; | &nbsp;
+      <a href="https://wa.me/918897840518" target="_blank" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i> 8897840518
+      </a>
+      &nbsp; | &nbsp;
+      <i class="fas fa-map-marker-alt"></i> Prakasam District, Kanigiri
+    </div>
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/bhargavi-g-5a27b4242" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/GundabathinaBhargavi" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://leetcode.com/u/Bhargavi1090/" target="_blank" title="LeetCode"><i class="fa-solid fa-code"></i></a>
+      <a href="https://www.kaggle.com/bhargavidimple" target="_blank" title="Kaggle"><i class="fab fa-kaggle"></i></a>
+    </div>
+  </section>
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="section-title-bar">
+      <a href="#summary" class="section-title-link">Summary</a>
+      <a href="#skills" class="section-title-link">Skills</a>
+      <a href="#education" class="section-title-link">Education</a>
+      <a href="#projects" class="section-title-link">Projects</a>
+      <a href="#certifications" class="section-title-link">Certifications</a>
+    </div>
+    <!-- SUMMARY -->
+    <section id="summary" class="section-card">
+      <div class="section-content">
+        Computer Science Student specializing in AI, ML, and Deep Learning. Passionate B.Tech 3rd-year Computer Science student deeply engaged in solving real-world problems through deep learning projects. Aspiring to excel in machine learning and artificial intelligence by building efficient and impactful solutions. Motivated by the potential of AI in daily applications and continuously expanding knowledge through hands-on projects.
+      </div>
+    </section>
+    <!-- SKILLS -->
+    <section id="skills" class="section-card">
+      <div class="section-content">
+        <ul class="skills-list">
+          <li><i class="fab fa-python"></i> Python Programming</li>
+          <li><i class="fas fa-brain"></i> Deep Learning</li>
+          <li><i class="fas fa-robot"></i> Machine Learning</li>
+          <li><i class="fas fa-language"></i> NLP</li>
+          <li><i class="fas fa-database"></i> MySQL, Power BI</li>
+          <li><i class="fas fa-code"></i> C++, C</li>
+          <li><i class="fas fa-network-wired"></i> Data Structures & Algorithms</li>
+          <li><i class="fas fa-lightbulb"></i> Critical Thinking</li>
+        </ul>
+      </div>
+    </section>
+    <!-- EDUCATION -->
+    <section id="education" class="section-card">
+      <div class="section-content">
+        <div class="edu-item">
+          <span class="edu-title">RGUKT Nuzvid</span>
+          <span class="edu-years">2020 – 2026</span>
+          <div class="edu-desc">6-Year integrated BTECH in Computer Science and Engineering | Grade: 9.0</div>
+        </div>
+        <div class="edu-item">
+          <span class="edu-title">ZPHS Pedairlapadu</span>
+          <span class="edu-years">2015 – 2020</span>
+          <div class="edu-desc">General Education | GPA: 10<br>Studied from 5th to 10th grade</div>
+        </div>
+      </div>
+    </section>
+    <!-- PROJECTS -->
+    <section id="projects" class="section-card">
+      <div class="section-content">
+        <div class="projects-grid">
+          <div class="project-card">
+            <span class="project-icon"><i class="fas fa-heartbeat"></i></span>
+            <div class="project-title">ECG Classification using Student-Teacher Model</div>
+            <div class="project-desc">
+              Developed a deep learning pipeline to classify ECG signals. Used a ResNet-based teacher model to train a lightweight MobileNet student model, achieving high accuracy with reduced computational cost.
+            </div>
+            <div class="project-tech">ECG, ResNet, MobileNet, TensorFlow</div>
+          </div>
+          <div class="project-card">
+            <span class="project-icon"><i class="fas fa-brain"></i></span>
+            <div class="project-title">Segmentation of Neuronal Structures in EM Stacks</div>
+            <div class="project-desc">
+              Implemented a U-Net++ model for precise segmentation of neuron structures in electron microscopy images. Built the pipeline in Python for accurate localization and analysis.
+            </div>
+            <div class="project-tech">U-Net++, Image Segmentation, Python</div>
+          </div>
+          <div class="project-card">
+            <span class="project-icon"><i class="fas fa-user-md"></i></span>
+            <div class="project-title">PCOS Detection Using YOLOv5</div>
+            <div class="project-desc">
+              Built a real-time object detection model to identify signs of PCOS from ultrasound images using YOLOv5. Dataset was annotated with Roboflow, supporting early diagnosis with high accuracy.
+            </div>
+            <div class="project-tech">Python, YOLOv5, Roboflow</div>
+          </div>
+          <div class="project-card">
+            <span class="project-icon"><i class="fas fa-utensils"></i></span>
+            <div class="project-title">Zomato Restaurant Data Analysis</div>
+            <div class="project-desc">
+              Analyzed customer behavior and pricing strategies using KNN and clustering. Visualized business insights with Python libraries like Seaborn and Matplotlib.
+            </div>
+            <div class="project-tech">Python, Seaborn, Matplotlib</div>
+          </div>
+          <div class="project-card">
+            <span class="project-icon"><i class="fas fa-book"></i></span>
+            <div class="project-title">Library Management System in SQL</div>
+            <div class="project-desc">
+              Designed a system to manage library operations, including book issuing and returning. Improved efficiency using MySQL and DBMS principles.
+            </div>
+            <div class="project-tech">MySQL, DBMS</div>
+          </div>
+        </div>
+        <!-- PCOS Detection DEMO -->
+        <div style="margin-top:38px;">
+          <div class="section-title-link" style="text-align:center; margin-bottom:18px; background: none; color: var(--accent); font-size: 1.2em;">PCOS Detection Demo</div>
+          <div class="pcos-demo">
+            <div class="pcos-img-block">
+              <img src="2ndone.png" alt="Before PCOS Detection" />
+              <div class="pcos-caption">Before Detection</div>
+            </div>
+            <div class="pcos-img-block">
+              <img src="Screenshot 2025-04-17 165734.png" alt="After PCOS Detection" />
+              <div class="pcos-caption">After Detection</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="section-card">
+      <div class="section-content">
+        <ul class="cert-list">
+          <li><i class="fas fa-certificate"></i> Python & Intro to ML - Study Comrade (Jul 2022 - Aug 2022)</li>
+          <li><i class="fas fa-certificate"></i> ML with Python - Skill Dunia (Mar 2023 - Apr 2023)</li>
+          <li><i class="fas fa-certificate"></i> Supervised Machine Learning - Coursera</li>
+          <li><i class="fas fa-certificate"></i> Deep Learning - Padhai (One Fourth Labs)</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <!-- Back to Top Button -->
+  <a href="#" id="backToTop" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+  <!-- Section reveal animation, smooth scroll, hamburger nav -->
+  <script>
+    // Hamburger menu for mobile
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const navbarInner = document.querySelector('.navbar-inner');
+    hamburger.onclick = function() {
+      navbarInner.classList.toggle('nav-open');
+      if (navbarInner.classList.contains('nav-open')) {
+        navLinks.style.display = 'flex';
+      } else {
+        navLinks.style.display = '';
+      }
+    };
+    // Close nav on link click (mobile)
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navbarInner.classList.remove('nav-open');
+        navLinks.style.display = '';
+      });
+    });
+
+    // Section fade-in from left on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.section-card').forEach(sec => observer.observe(sec));
+
+    // Smooth scroll for nav and section links
+    document.querySelectorAll('.nav-link, .section-title-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        window.scrollTo({
+          top: target.offsetTop - 70,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Highlight nav bar and section title bar links on scroll
+    const navLinksAll = document.querySelectorAll('.nav-link, .section-title-link');
+    const sections = ['summary', 'skills', 'education', 'projects', 'certifications'].map(id => document.getElementById(id));
+    window.addEventListener('scroll', () => {
+      let fromTop = window.scrollY + 110;
+      navLinksAll.forEach(link => link.classList.remove('active'));
+      sections.forEach((section, i) => {
+        if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+          navLinksAll[i].classList.add('active');
+          navLinksAll[i + 5]?.classList.add('active');
+        }
+      });
+    });
+
+    // Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    window.onscroll = function() {
+      backToTop.style.display = (window.scrollY > 400) ? "block" : "none";
+    };
+    backToTop.onclick = function() {
+      window.scrollTo({top:0,behavior:'smooth'});
+      return false;
+    }
+  </script>
+</body>
+</html>
